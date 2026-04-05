@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;700&display=swap');
+
+.resume-2d-container {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #0a0a0f, #020205);
+  color: white;
+  padding: 8rem 2rem;
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.back-button {
+  position: fixed;
+  top: 3rem;
+  left: 3rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+  padding: 0.8rem 1.6rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  transform: translateX(-5px);
+}
+
+.resume-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: left;
+  margin-bottom: 6rem;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+@media (max-width: 768px) {
+    .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+}
+
+.hero-avatar {
+    width: 15vw;
+    height: 15vw;
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+    background: #000;
+}
+
+.hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.name {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.4rem;
+  background: linear-gradient(90deg, #fff, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1rem;
+  transition: all 0.3s ease;
+}
+
+.link-item:hover {
+  color: #3b82f6;
+  text-shadow: 0 0 10px #3b82f6;
+}
+
+.section {
+  margin-bottom: 6rem;
+}
+
+.section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.3rem;
+  margin-bottom: 3rem;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0.8;
+}
+
+.h2-dot {
+    width: 6px;
+    height: 6px;
+    background: #3b82f6;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+.bio {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.skill-icon {
+    color: #3b82f6;
+    padding: 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+}
+
+.skill-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.skill-name {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.skill-level {
+    font-size: 0.65rem;
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(200, 200, 200, 0.4);
+    letter-spacing: 0.1rem;
+}
+
+.project-grid-2d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .project-grid-2d { grid-template-columns: 1fr; }
+}
+
+.project-card-2d {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-card-2d:hover {
+  border-color: #3b82f6;
+  transform: translateY(-5px);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.project-img-wrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-card-2d:hover .project-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.project-info-2d {
+  padding: 1.5rem;
+}
+
+.project-header-2d {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-header-2d h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.project-info-2d p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tech-tag {
+    font-size: 0.65rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Timeline/Orbit History */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, #3b82f6, transparent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: #020205;
+    border: 2px solid #3b82f6;
+    border-radius: 50%;
+    transform: translateX(-4.5px);
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.company {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    color: #fff;
+}
+
+.period {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.role {
+    font-weight: 700;
+    color: #3b82f6;
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.timeline-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* Contact Terminal Form */
+.contact-terminal {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-group label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2rem;
+    color: #3b82f6;
+}
+
+.form-group input, 
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.terminal-submit {
+    background: #3b82f6;
+    border: none;
+    padding: 1.5rem;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terminal-submit:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+    letter-spacing: 0.4rem;
+}
