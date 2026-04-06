@@ -41,8 +41,8 @@ const CustomCursor = () => {
       <motion.div
         className="custom-cursor"
         style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring,
+          x: cursorXSpring,
+          y: cursorYSpring,
         }}
         animate={{
           scale: isHovering ? 2 : 1,
@@ -52,8 +52,8 @@ const CustomCursor = () => {
       <motion.div
         className="custom-cursor-dot"
         style={{
-          translateX: cursorX,
-          translateY: cursorY,
+          x: cursorX,
+          y: cursorY,
         }}
         animate={{
             scale: isHovering ? 0.5 : 1,
