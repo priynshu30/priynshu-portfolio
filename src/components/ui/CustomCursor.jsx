@@ -6,7 +6,7 @@ const CustomCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 700 };
+  const springConfig = { damping: 30, stiffness: 400, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -21,7 +21,8 @@ const CustomCursor = () => {
 
     window.addEventListener('mousemove', moveCursor);
     
-    const interactables = document.querySelectorAll('button, a, .logo, .nav-item, canvas');
+    // Add hover effects to all clickable elements
+    const interactables = document.querySelectorAll('button, a, input, textarea, .hoverable');
     interactables.forEach(el => {
       el.addEventListener('mouseenter', handleHover);
       el.addEventListener('mouseleave', handleUnhover);
@@ -37,25 +38,15 @@ const CustomCursor = () => {
   }, [cursorX, cursorY]);
 
   return (
-    <>
-      <motion.div
-        className="custom-cursor"
-        x={cursorXSpring}
-        y={cursorYSpring}
-        animate={{
-          scale: isHovering ? 2 : 1,
-          backgroundColor: isHovering ? 'rgba(59, 130, 246, 0.3)' : 'rgba(59, 130, 246, 0.1)',
-        }}
-      />
-      <motion.div
-        className="custom-cursor-dot"
-        x={cursorX}
-        y={cursorY}
-        animate={{
-            scale: isHovering ? 0.5 : 1,
-        }}
-      />
-    </>
+    <motion.div
+      className="custom-cursor"
+      x={cursorXSpring}
+      y={cursorYSpring}
+      animate={{
+        scale: isHovering ? 3 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    />
   );
 };
 

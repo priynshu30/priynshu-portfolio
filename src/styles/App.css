@@ -1,12 +1,20 @@
 .app-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #020205;
-  overflow: hidden;
+  background-color: #f7f5f2;
   position: relative;
   cursor: none;
+}
+
+body {
+  margin: 0;
+  background-color: #f7f5f2;
+  color: #151515;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 canvas {
@@ -17,29 +25,16 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(59, 130, 246, 0.5);
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  margin-left: -20px;
-  margin-top: -20px;
-}
-
-.custom-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  background-color: #3b82f6;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  margin-left: -2px;
-  margin-top: -2px;
-  box-shadow: 0 0 10px #3b82f6;
+  margin-left: -8px;
+  margin-top: -8px;
+  mix-blend-mode: difference;
+  will-change: transform;
 }
 
 /* Hide default cursor on interactive elements too */
