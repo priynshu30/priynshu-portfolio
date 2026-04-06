@@ -1,45 +1,138 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './styles/App.css';
 
 function App() {
   const [photoError, setPhotoError] = useState(false);
+  const cursorRef = useRef(null);
+  const cursorDotRef = useRef(null);
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const xTo = gsap.quickTo(cursorRef.current, 'x', {
+      duration: 0.18,
+      ease: 'power3.out',
+    });
+    const yTo = gsap.quickTo(cursorRef.current, 'y', {
+      duration: 0.18,
+      ease: 'power3.out',
+    });
+    const xDotTo = gsap.quickTo(cursorDotRef.current, 'x', {
+      duration: 0.08,
+      ease: 'power3.out',
+    });
+    const yDotTo = gsap.quickTo(cursorDotRef.current, 'y', {
+      duration: 0.08,
+      ease: 'power3.out',
+    });
+
+    const onMouseMove = (event) => {
+      xTo(event.clientX - 18);
+      yTo(event.clientY - 18);
+      xDotTo(event.clientX - 4);
+      yDotTo(event.clientY - 4);
+    };
+
+    const hoverTargets = document.querySelectorAll('a, button, .info-card, .project-card');
+    const handleEnter = () => cursorRef.current?.classList.add('cursor-grow');
+    const handleLeave = () => cursorRef.current?.classList.remove('cursor-grow');
+
+    hoverTargets.forEach((item) => {
+      item.addEventListener('mouseenter', handleEnter);
+      item.addEventListener('mouseleave', handleLeave);
+    });
+    window.addEventListener('mousemove', onMouseMove);
+
+    gsap.to('.hero-content', {
+      y: -30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
+    gsap.to('.hero-visual', {
+      y: 40,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
+    gsap.utils.toArray('.content-section').forEach((section) => {
+      gsap.from(section, {
+        y: 32,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      hoverTargets.forEach((item) => {
+        item.removeEventListener('mouseenter', handleEnter);
+        item.removeEventListener('mouseleave', handleLeave);
+      });
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
-    <div className="portfolio-page">
+    <div className="portfolio-page" ref={pageRef}>
+      <div ref={cursorRef} className="custom-cursor-ring" />
+      <div ref={cursorDotRef} className="custom-cursor-dot" />
       <header className="top-nav">
-        <div className="brand">Priyanshu</div>
+        <div className="brand">logo</div>
         <nav className="menu">
           <a href="#home">home</a>
-          <a href="#about">summary</a>
+          <a href="#about">about</a>
           <a href="#services">services</a>
           <a href="#work">work</a>
-          <a href="#experience">experience</a>
+          <a href="#experience">testimonials</a>
           <a href="#contact">contact</a>
-          <a className="resume-link" href="/Priyanshu_Resume.pdf" download>resume</a>
         </nav>
       </header>
 
-      <main className="hero section-reveal" id="home">
-        <aside className="socials">
-          <a href="mailto:priyanshukumarr444@gmail.com">Email</a>
-          <a href="tel:+919012965152">+91 9012965152</a>
-          <a href="https://github.com/priyanshu" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://linkedin.com/in/priyanshu" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://leetcode.com/u/priynshu30" target="_blank" rel="noreferrer">LeetCode</a>
-          <a href="#contact">Agra, UP, India</a>
+      <main className="hero section-reveal reveal-delay-1" id="home">
+        <div className="left-cover-bg">left cover bg</div>
+        <aside className="socials fade-in-left">
+          <a href="#" target="_blank" rel="noreferrer">YouTube</a>
+          <a href="#" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="#" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="#" target="_blank" rel="noreferrer">Dribbble</a>
+          <a href="#" target="_blank" rel="noreferrer">Pinterest</a>
+          <a href="https://github.com/priyanshu" target="_blank" rel="noreferrer">Github</a>
         </aside>
 
-        <section className="hero-content">
-          <p className="eyebrow">full stack developer · mern stack · typescript</p>
+        <section className="hero-content fade-in-up reveal-delay-2">
+          <p className="eyebrow">avatar</p>
           <h1>
-            Building Scalable
+            <span className="reveal-word">Transforming</span>{' '}
+            <span className="reveal-word">Ideas</span>
             <br />
-            Web Experiences
+            <span className="reveal-word">Into</span>{' '}
+            <span className="reveal-word">Digital Reality</span>
           </h1>
           <p className="description">
-            Results-driven MERN developer with experience building production-grade
-            web apps using React, TypeScript, Node.js, Express, and MongoDB. I focus
-            on REST APIs, JWT authentication, Redux Toolkit, and responsive UI.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
+            exercitationem harum, quia nulla temporibus deleniti libero veniam
+            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
+            quod laudantium debitis.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="#work">View Projects</a>
@@ -47,7 +140,8 @@ function App() {
           </div>
         </section>
 
-        <section className="hero-visual">
+        <section className="hero-visual fade-in-up reveal-delay-3">
+          <div className="rounded-text badge-top">rounded text</div>
           <div className="avatar-circle">
             {!photoError ? (
               <img
@@ -60,11 +154,12 @@ function App() {
               <div className="avatar-inner">PRIYANSHU</div>
             )}
           </div>
+          <div className="rounded-text badge-bottom">rounded text</div>
           <div className="ring-text">react - node - mongodb - typescript -</div>
         </section>
       </main>
 
-      <section className="content-section section-reveal" id="about">
+      <section className="content-section section-reveal reveal-delay-1" id="about">
         <h2>Professional Summary</h2>
         <p>
           Results-driven Full Stack Developer (MERN) with hands-on experience
@@ -75,7 +170,7 @@ function App() {
         </p>
       </section>
 
-      <section className="content-section section-reveal" id="services">
+      <section className="content-section section-reveal reveal-delay-2" id="services">
         <h2>Technical Skills</h2>
         <div className="card-grid">
           <article className="info-card">
@@ -97,7 +192,7 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section section-reveal" id="work">
+      <section className="content-section section-reveal reveal-delay-3" id="work">
         <h2>Featured Projects</h2>
         <div className="project-list">
           <article className="project-card">
@@ -136,7 +231,7 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section section-reveal" id="experience">
+      <section className="content-section section-reveal reveal-delay-2" id="experience">
         <h2>Experience & Education</h2>
         <div className="timeline">
           <article className="timeline-item">
@@ -155,7 +250,7 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section section-reveal" id="contact">
+      <section className="content-section section-reveal reveal-delay-3" id="contact">
         <h2>Contact</h2>
         <div className="contact-box">
           <p>Email: priyanshukumarr444@gmail.com</p>
