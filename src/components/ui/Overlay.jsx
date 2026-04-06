@@ -172,7 +172,7 @@ function Overlay({ toggleView, setActiveSection, activeSection, handleEnterSecti
                 <div className="branding-info">
                     <h1 className="logo" onClick={() => setActiveSection(null)}>PRIYANSHU</h1>
                     <div className="role-tag">
-                        <Code2Icon size={10} />
+                        <Code2 size={10} />
                         <span>MERN_STACK_DEVELOPER // 2024</span>
                     </div>
                 </div>
